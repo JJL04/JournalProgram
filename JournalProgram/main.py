@@ -1,4 +1,4 @@
-from journal import Journal
+from JournalProgram.journal import Journal
 
 def main():
     journal = Journal()
