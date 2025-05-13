@@ -1,34 +1,54 @@
-from JournalProgram.journal import Journal
+using System;
 
-def main():
-    journal = Journal()
-    journal.load()
+namespace JournalProgram
+{
+    class Program
+    {
+        static void Main()
+        {
+            Journal journal = new Journal();
+            journal.Load();
 
-    while True:
-        print("1. Add journal entry")
-        print("2. Display journal entries")
-        print("3. Save journal")
-        print("4. Load journal")
-        print("5. Exit")
-        
-        choice = input("Choose an option: ")
+            while (true)
+            {
+                Console.WriteLine("1. Add journal entry");
+                Console.WriteLine("2. Display journal entries");
+                Console.WriteLine("3. Save journal");
+                Console.WriteLine("4. Load journal");
+                Console.WriteLine("5. Exit");
+                Console.Write("Choose an option: ");
+                
+                string choice = Console.ReadLine();
 
-        if choice == "1":
-            entry_text = input(f"Your prompt: {journal.get_random_prompt()}\nYour entry: ")
-            journal.add_entry(entry_text)
-        elif choice == "2":
-            journal.display_entries()
-        elif choice == "3":
-            journal.save()
-            print("Journal saved.")
-        elif choice == "4":
-            journal.load()
-            print("Journal loaded.")
-        elif choice == "5":
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please try again.")
+                switch (choice)
+                {
+                    case "1":
+                        Console.Write($"Your prompt: {journal.GetRandomPrompt()}\nYour entry: ");
+                        string entryText = Console.ReadLine();
+                        journal.AddEntry(entryText);
+                        break;
 
-if __name__ == "__main__":
-    main()
+                    case "2":
+                        journal.DisplayEntries();
+                        break;
+
+                    case "3":
+                        journal.Save();
+                        break;
+
+                    case "4":
+                        journal.Load();
+                        break;
+
+                    case "5":
+                        Console.WriteLine("Goodbye!");
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+        }
+    }
+}
